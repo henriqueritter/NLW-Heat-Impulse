@@ -67,18 +67,23 @@ class AuthenticateUserService {
 
     //primerio param o payload(o que quero que ele tenha acesso, ou informacoes do user)
     //segundo secret para criar e validar o Token(gera no md5generator)
+    //terceiro subject, geralmente Id do user e tempo para expirar o token
     const token = sign(
       {
         user: {
           name: user.name,
           avatar_url: user.avatar_url,
           id: user.id
-        },
-        process.env.JWT_SECRET,
+        }
+      },
+      process.env.JWT_SECRET,
+      {
+        subject: user.id,
+        expiresIn: "1d"
+      }
+    );
 
-      })
-
-    return response.data;
+    return { token, user };
   }
 }
 
