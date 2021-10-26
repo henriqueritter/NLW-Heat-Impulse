@@ -8,6 +8,8 @@ import axios from 'axios';
 //faz connection com o BD
 import prismaClient from '../prisma';
 
+import { sign } from 'jsonwebtoken';
+
 interface IAccessTokenResponse {
   access_token: string
 }
@@ -62,6 +64,19 @@ class AuthenticateUserService {
         }
       })
     }
+
+    //primerio param o payload(o que quero que ele tenha acesso, ou informacoes do user)
+    //segundo secret para criar e validar o Token(gera no md5generator)
+    const token = sign(
+      {
+        user: {
+          name: user.name,
+          avatar_url: user.avatar_url,
+          id: user.id
+        },
+        process.env.JWT_SECRET,
+
+      })
 
     return response.data;
   }
