@@ -3,6 +3,8 @@ import express from 'express';
 import { router } from "./routes";
 
 const app = express();
+//diz para aceitar requisicoes com JSON no body.
+app.use(express.json());
 
 // chama as rotas do nosso arquivo
 app.use(router);
