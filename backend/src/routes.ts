@@ -9,6 +9,6 @@ const router = Router();
 //passamos o controller como middleware 
 router.post("/authenticate", new AuthenticateUserController().handle)
 
-router.post("/message", ensureAuthenticated, new CreateMessageController().handle)
+router.post("/messages", ensureAuthenticated, new CreateMessageController().handle)
 
 export { router }
