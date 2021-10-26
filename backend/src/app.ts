@@ -1,7 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
+import { router } from "./routes";
 
 const app = express();
+
+// chama as rotas do nosso arquivo
+app.use(router);
 
 app.get("/github", (request, response) => {
   response.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`);
