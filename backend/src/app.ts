@@ -40,4 +40,4 @@ app.get("/signin/callback", (request, response) => {
   return response.json(code);
 });
 
-serverHttp.listen(4000, () => console.log('server running!'));
+export { serverHttp, io };
