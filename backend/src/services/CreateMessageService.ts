@@ -14,6 +14,7 @@ class CreateMessageService {
       }
     });
 
+    //objeto a ser enviado pelo socket para o front/mobile
     const infoWS = {
       text: message.text,
       user_id: message.user_id,
