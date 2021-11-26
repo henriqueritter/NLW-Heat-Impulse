@@ -2,7 +2,28 @@ import 'dotenv/config';
 import express from 'express';
 import { router } from "./routes";
 
+import cors from 'cors';
+
+//http e server para o socketio
+import http from 'http';
+import { Server } from 'socket.io';
+
 const app = express();
+
+//uso do cors no app
+app.use(cors());
+
+//subir o server com o http
+const serverHttp = http.createServer(app);
+
+//abrir o acesso ao io do nosso cliente / config do cors para acessar qualquer cliente
+const io = new Server(serverHttp, {
+  cors: {
+    origin: "*"
+  }
+});
+
+io.on("connection", socket => { console.log(`Usuário conectado no socket ${socket.id}`) });
 //diz para aceitar requisicoes com JSON no body.
 app.use(express.json());
 
