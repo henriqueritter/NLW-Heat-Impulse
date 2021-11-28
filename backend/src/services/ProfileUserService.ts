@@ -8,9 +8,7 @@ class ProfileUserService {
       }
     });
 
-    if (user) {
-      return user;
-    }
+    return user;
   }
 }
 export { ProfileUserService }

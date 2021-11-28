@@ -7,7 +7,7 @@ class ProfileUserController {
 
     const profileUserService = new ProfileUserService();
 
-    const result = profileUserService.execute(user_id);
+    const result = await profileUserService.execute(user_id);
 
     return response.json(result);
   }
