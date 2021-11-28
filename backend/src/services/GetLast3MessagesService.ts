@@ -1,11 +1,10 @@
 import prismaClient from '../prisma'
-import PrismaClient from '../prisma'
 
 class GetLast3MessagesService {
   async execute() {
     //retorna apenas 3 linhas
     //SELECT * FROM MESSAGES LIMIT 3 ORDER BY CREATED_AT DESC;
-    const messages = await prismaClient.message.findFirst({
+    const messages = await prismaClient.message.findMany({
       take: 3,
       orderBy: {
         created_at: "desc"
@@ -19,6 +18,5 @@ class GetLast3MessagesService {
     return messages;
   }
 }
-
 
 export { GetLast3MessagesService }
